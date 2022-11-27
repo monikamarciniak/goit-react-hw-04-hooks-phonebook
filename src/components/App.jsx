@@ -15,7 +15,7 @@ export const App = () => {
   const [firstRenderFlag, setFlag] = useState(true);
 
   const [filter, setFilter] = useState('');
-  useEffect(() => { }, []);
+  useEffect(() => {}, []);
 
   useEffect(() => {
     if (firstRenderFlag) {
@@ -28,7 +28,6 @@ export const App = () => {
           setContacts(parsedContacts);
         }
       }
-
       setFlag(false);
     } else {
       localStorage.setItem('contactList', JSON.stringify(contacts));
@@ -37,7 +36,7 @@ export const App = () => {
 
   const handleChange = e => {
     const { value } = e.target;
-    setFilter(value );
+    setFilter(value);
   };
 
   const handleSubmit = e => {
@@ -57,39 +56,35 @@ export const App = () => {
 
   const handleDelete = e => {
     setContacts(contacts.filter(contact => contact.id !== e));
-    };
+  };
 
   const getFilteredContacts = () => {
     const filterContactsList = contacts.filter(contact => {
-      return contact.name
-        .toLowerCase()
-        .includes(filter.toLowerCase());
+      return contact.name.toLowerCase().includes(filter.toLowerCase());
     });
-
     return filterContactsList;
   };
 
-    return (
-      <div
-        style={{
-          height: '100vh',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          fontSize: 20,
-          color: '#010101',
-        }}
-      >
-        <h1>Phonebook</h1>
-        <ContactForm handleSubmit={handleSubmit} />
-        <h2> Contacts</h2>
-        <Filter filter={filter} handleChange={handleChange} />
-        <ContactList
-          contacts={getFilteredContacts()}
-          handleDelete={handleDelete}
-        />
-      </div>
-    );
-  };
-
+  return (
+    <div
+      style={{
+        height: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        fontSize: 20,
+        color: '#010101',
+      }}
+    >
+      <h1>Phonebook</h1>
+      <ContactForm handleSubmit={handleSubmit} />
+      <h2> Contacts</h2>
+      <Filter filter={filter} handleChange={handleChange} />
+      <ContactList
+        contacts={getFilteredContacts()}
+        handleDelete={handleDelete}
+      />
+    </div>
+  );
+};
