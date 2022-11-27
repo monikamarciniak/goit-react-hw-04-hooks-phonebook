@@ -6,18 +6,17 @@ import css from './ContactForm.module.css';
 export const ContactForm = ({ handleSubmit }) => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-  
 
   const handleChangeName = e => {
     const { value } = e.target;
-    setState(value);
+    setName(value);
   };
 
-  const handleSubmitNamber = e => {
+  const handleChangeNumber = e => {
     const { value } = e.target;
     setNumber(value);
   };
-  
+
   const handleFormSubmit = e => {
     e.preventDefault();
     const form = e.currentTarget;
